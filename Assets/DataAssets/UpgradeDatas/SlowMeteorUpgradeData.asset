@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf19c0b8dd1387f488c6af700821aa8d, type: 3}
+  m_Name: SlowMeteorUpgradeData
+  m_EditorClassIdentifier: 
+  maxLevel: 1
+  upgradeInfos:
+  - upgradeName: "Yava\u015Flatan alan"
+    description: "Yava\u015Flat\u0131yor"
+  - upgradeName: "Yava\u015Flatan alan"
+    description: "Baya yava\u015Flat\u0131yor"
+  values:
+  - damage: 0
+    slowAmount: 0
+    slowDuration: 0
+    spawnMeteorDelay: 0
+    meteorCount: 0
+  - damage: 3
+    slowAmount: 0.403
+    slowDuration: 2
+    spawnMeteorDelay: 7
+    meteorCount: 1

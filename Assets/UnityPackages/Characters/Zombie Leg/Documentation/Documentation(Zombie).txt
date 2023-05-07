@@ -1,0 +1,43 @@
+	
+--------------Zombie(With Brain and Legs)----------------------------
+
+This pack contains low poly Zombie creature with basic animations.
+
+Technical Details:-
+		- 8 Animations(Idle, Idle2, Walk, Run, Attack, Hit1, Hit2, Death)		
+		- Vertex count : 3266
+		- Tris count : 6412
+		- Used Material(s) : Universal Render Pipeline(URP/Lit)
+		- Texture maps : Albedo/Base Color, NormalMap
+		- Texture Size : 2048
+
+Features:-
+	- Low poly design
+	- Unwrapped
+	- Realistic texture
+	- Easy to change colors
+	- Realistic animations
+		
+Folder details:-
+
+	Materials : Where the materials for the model located.
+	
+	Meshes : Contain FBX format of the 3d model.
+	
+	Textures : Contains Textures, that are in (.PNG) file format
+	
+	(Other folders - Prefabs, Scenes)
+
+How to use:-
+	
+	Simply drag and drop the prefab to your scene and use it.
+	(Prefab(s) located under 
+	Asset > Zombie Leg > Prefabs).
+
+..................................................................................
+
+About Us : "SR Studios Kerala", Game developing company located in Alappuzha, Kerala, India
+
+Contact : srstudioskerala@gmail.com
+
+................Thanks for downloading this package................................

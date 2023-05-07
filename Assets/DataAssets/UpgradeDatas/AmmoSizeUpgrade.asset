@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65ab97dc716ebd34c80ea0438c38ccd2, type: 3}
+  m_Name: AmmoSizeUpgrade
+  m_EditorClassIdentifier: 
+  maxLevel: 1
+  upgradeInfos:
+  - upgradeName: Ammo Size
+    description: "Baya\u011F\u0131 mermi"
+  - upgradeName: Ammo Size
+    description: "\xC7ok say\u0131da mermi!"
+  values: 1400000032000000

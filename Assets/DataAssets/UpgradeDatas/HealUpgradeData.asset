@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f55876825f64a77418a28bfe0d23f56b, type: 3}
+  m_Name: HealUpgradeData
+  m_EditorClassIdentifier: 
+  maxLevel: 2
+  upgradeInfos:
+  - upgradeName: Heal
+    description: Heal constantly
+  - upgradeName: Heal
+    description: Heal constantly
+  healDatas:
+  - healAmount: 0
+    healDelay: 0
+  - healAmount: 20
+    healDelay: 10
