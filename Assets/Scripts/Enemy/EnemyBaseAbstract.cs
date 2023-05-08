@@ -19,6 +19,7 @@ public abstract class EnemyBaseAbstract : MonoBehaviour, IKillable, ISlowable
     [SerializeField] protected int attackDamage = 10;
     [SerializeField] protected LayerMask playerLayer;
     [SerializeField] protected Transform attackOriginTransform;
+    [SerializeField] private int attackAnimCount;
 
     private Collider coll;
     protected NavMeshAgent agent;
@@ -28,7 +29,7 @@ public abstract class EnemyBaseAbstract : MonoBehaviour, IKillable, ISlowable
     protected bool isAttacking;
     protected bool canMove;
     protected bool isDead;
-    private float moveSpeed;
+    protected float moveSpeed;
 
     protected virtual void Awake()
     {
@@ -43,6 +44,7 @@ public abstract class EnemyBaseAbstract : MonoBehaviour, IKillable, ISlowable
         isDead = false;
         StartChasing();
         coll.enabled = true;
+        animator.SetFloat("MoveSpeed", moveSpeed);
         GetComponent<EnemyHealth>().OnEnemyDie += Die;
         UpgradeArea.OnSafeAreaEntered += StopChasing;
         UpgradeArea.OnSafeAreaDisabled += StartChasing;
@@ -78,7 +80,7 @@ public abstract class EnemyBaseAbstract : MonoBehaviour, IKillable, ISlowable
         agent.isStopped = false;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if(!canMove)
             return;
@@ -92,7 +94,8 @@ public abstract class EnemyBaseAbstract : MonoBehaviour, IKillable, ISlowable
                 if (Time.time >= nextAttackTime)
                 {
                     Attack();
-                    animator.SetTrigger("Attack");
+                    var attackAnim = "Attack" + UnityEngine.Random.Range(0, attackAnimCount);
+                    animator.SetTrigger(attackAnim);
                     nextAttackTime = Time.time + 1f / attackRate;
                 }
             }
@@ -123,7 +126,7 @@ public abstract class EnemyBaseAbstract : MonoBehaviour, IKillable, ISlowable
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
     }
 
-    private bool isSlow;
+    protected bool isSlow;
     public void ApplySlow(float slowAmount, float slowDuration)
     {
         if(isSlow)
@@ -134,9 +137,11 @@ public abstract class EnemyBaseAbstract : MonoBehaviour, IKillable, ISlowable
     IEnumerator SlowEffect(float slowAmount, float slowDuration)
     {
         isSlow = true;
+        animator.SetFloat("MoveSpeed", 1f);
         agent.speed = agent.speed * (1 - slowAmount);
         yield return new WaitForSeconds(slowDuration);
         isSlow = false;
         agent.speed = moveSpeed;
+        animator.SetFloat("MoveSpeed", moveSpeed);
     }
 }

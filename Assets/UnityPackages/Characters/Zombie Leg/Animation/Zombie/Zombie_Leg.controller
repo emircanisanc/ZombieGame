@@ -13,7 +13,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 4
     m_ConditionEvent: MoveSpeed
-    m_EventTreshold: 2
+    m_EventTreshold: 3.6
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4645864567132574644}
   m_Solo: 0
@@ -38,7 +38,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 4
     m_ConditionEvent: MoveSpeed
-    m_EventTreshold: 2
+    m_EventTreshold: 3.6
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4645864567132574644}
   m_Solo: 0
@@ -213,7 +213,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 3
     m_ConditionEvent: MoveSpeed
-    m_EventTreshold: 2
+    m_EventTreshold: 3.6
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1080100533233388114}
   m_Solo: 0
@@ -264,7 +264,7 @@ AnimatorStateMachine:
     m_Position: {x: 470, y: 20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -90357121973378161}
-    m_Position: {x: 240, y: 270, z: 0}
+    m_Position: {x: 40, y: 60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1080100533233388114}
     m_Position: {x: 420, y: 180, z: 0}
@@ -276,7 +276,7 @@ AnimatorStateMachine:
     m_Position: {x: 310, y: 410, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 390183837620756304}
-    m_Position: {x: 650, y: 390, z: 0}
+    m_Position: {x: 880, y: 400, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1262071256928329128}
     m_Position: {x: 570, y: -120, z: 0}
@@ -292,7 +292,7 @@ AnimatorStateMachine:
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 0, y: 280, z: 0}
-  m_EntryPosition: {x: 40, y: 110, z: 0}
+  m_EntryPosition: {x: -170, y: -50, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -1594159359883893322}
@@ -330,7 +330,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Attack
+    m_ConditionEvent: Attack0
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -90357121973378161}
@@ -508,7 +508,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: Attack
+  - m_Name: Attack0
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -633,7 +633,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 3
     m_ConditionEvent: MoveSpeed
-    m_EventTreshold: 2
+    m_EventTreshold: 3.6
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1080100533233388114}
   m_Solo: 0

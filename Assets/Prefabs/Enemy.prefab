@@ -981,6 +981,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   attackOriginTransform: {fileID: 1257816011}
+  attackAnimCount: 1
 --- !u!1 &7705623912465236279
 GameObject:
   m_ObjectHideFlags: 0

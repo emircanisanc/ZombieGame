@@ -14,6 +14,7 @@ public class EnemySpawner : MonoBehaviour
         public int phase;
         public float phaseDuration;
         public float delayAfterPhase;
+        public SpawnType spawnType;
         public List<SpawnEnemyData> spawnEnemyDatas;
     }
     [System.Serializable]
@@ -22,6 +23,11 @@ public class EnemySpawner : MonoBehaviour
         public ObjType enemyType;
         [HideInInspector] public float spawnTimer;
         public float spawnDelay;
+    }
+    public enum SpawnType
+    {
+        Unit,
+        Boss
     }
     # endregion
 
@@ -51,17 +57,17 @@ public class EnemySpawner : MonoBehaviour
     private void CheckEnemyState()
     {
         deathCounter++;
-        if(!allEnemiesSpawned)
-            return;
         if(deathCounter == spawnedCounter)
-            AllEnemiesDied?.Invoke();
+        {
+            if(allEnemiesSpawned)
+                AllEnemiesDied?.Invoke();
+            else
+                canSpawn = true;
+        }
     }
 
     void Update()
     {
-        if(!canSpawn)
-            return;
-
         if(allEnemiesSpawned)
             return;
 
@@ -70,6 +76,9 @@ public class EnemySpawner : MonoBehaviour
             allEnemiesSpawned = true;
             return;
         }
+
+        if(!canSpawn)
+            return;
         
         var currentPhase = spawnDatas[currentPhaseIndex];
 
@@ -82,23 +91,49 @@ public class EnemySpawner : MonoBehaviour
                 return;
         }
 
+        if(currentPhase.spawnType == SpawnType.Boss)
+        {
+            if(deathCounter == spawnedCounter)
+            {
+                foreach (var enemyData in currentPhase.spawnEnemyDatas)
+                {
+                    Vector3 spawnPos = spawnPositions[UnityEngine.Random.Range(0, spawnPositions.Length)].position;
+                    var randomness = UnityEngine.Random.insideUnitCircle * UnityEngine.Random.Range(-positionRandomness, positionRandomness);
+                    spawnPos += new Vector3(randomness.x, 0, randomness.y);
+                    var enemy = poolManager.Get(enemyData.enemyType);
+                    enemy.transform.SetParent(transform);
+                    enemy.transform.position = spawnPos;
+                    enemy.SetActive(true);
+                    enemyData.spawnTimer = enemyData.spawnDelay;
+                    spawnedCounter++;
+                }
+                currentPhaseIndex++;
+                phaseTimer = 0;
+                isPhaseStarted = false;
+                canSpawn = false;
+            }
+            return;
+        }
+
+
         phaseTimer += Time.deltaTime;
         
         if (phaseTimer >= currentPhase.phaseDuration)
         {
-            currentPhaseIndex++;
-            phaseTimer = 0;
-            isPhaseStarted = false;
+            if((float)deathCounter / (float) spawnedCounter >= 0.9f)
+            {
+                currentPhaseIndex++;
+                phaseTimer = 0;
+                isPhaseStarted = false;
+            }
             return;
         }
         
         foreach (var enemyData in currentPhase.spawnEnemyDatas)
         {
             enemyData.spawnTimer -= Time.deltaTime;
-            
             if (enemyData.spawnTimer <= 0)
             {
-
                 Vector3 spawnPos = spawnPositions[UnityEngine.Random.Range(0, spawnPositions.Length)].position;
                 var randomness = UnityEngine.Random.insideUnitCircle * UnityEngine.Random.Range(-positionRandomness, positionRandomness);
                 spawnPos += new Vector3(randomness.x, 0, randomness.y);
@@ -110,6 +145,7 @@ public class EnemySpawner : MonoBehaviour
                 spawnedCounter++;
             }
         }
+
     }
 }
 
