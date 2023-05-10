@@ -15,7 +15,7 @@ MonoBehaviour:
   maxLevel: 1
   upgradeInfos:
   - upgradeName: Ammo Size
-    description: "Baya\u011F\u0131 mermi"
+    description: Lots of Bullet
   - upgradeName: Ammo Size
-    description: "\xC7ok say\u0131da mermi!"
-  values: 1400000032000000
+    description: Lots of Bullet
+  values: 1400000023000000

@@ -13,6 +13,7 @@ namespace Damage
         public void ApplyDamage(RaycastHit hit, float baseDamage)
         {
             healthBase.Health = Math.Max(healthBase.Health - baseDamage, 0);
+            GunEffect.CreateEffect(hit);
             OnDamage?.Invoke();
         }
 

@@ -1,14 +1,17 @@
 using UnityEngine;
 
-public class FloatUpgrade : UpgradeBase
+namespace Upgrade
 {
-    [SerializeField] protected Float floatToChange;
-    [SerializeField] protected FloatUpgradeData upgradeData;
-
-    public override UpgradeDataBase UpgradeData => upgradeData;
-
-    protected override void OnLevelUp()
+    public class FloatUpgrade : UpgradeBase
     {
-        floatToChange.Value = upgradeData.values[level];
+        [SerializeField] protected Float floatToChange;
+        [SerializeField] protected FloatUpgradeData upgradeData;
+
+        public override UpgradeDataBase UpgradeData => upgradeData;
+
+        protected override void OnLevelUp()
+        {
+            floatToChange.Value = upgradeData.values[level];
+        }
     }
 }

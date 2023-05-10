@@ -12,20 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a63446d3a896114c859d6f4dcce2e0c, type: 3}
   m_Name: MeteorUpgradeData
   m_EditorClassIdentifier: 
-  maxLevel: 2
+  maxLevel: 3
   upgradeInfos:
   - upgradeName: Meteor
-    description: "A\u015F\u0131r\u0131 iyi"
+    description: Pretty Good
   - upgradeName: Meteor
-    description: Baya iyi
+    description: Pretty Good
   - upgradeName: Meteor
-    description: Baya iyi
+    description: Pretty Good
+  - upgradeName: Meteor
+    description: Pretty Good
   values:
   - damage: 0
     spawnMeteorDelay: 0
     meteorCount: 0
-  - damage: 2
-    spawnMeteorDelay: 5
+  - damage: 1
+    spawnMeteorDelay: 10
+    meteorCount: 1
+  - damage: 1
+    spawnMeteorDelay: 10
     meteorCount: 2
   - damage: 2
     spawnMeteorDelay: 10

@@ -12,20 +12,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf19c0b8dd1387f488c6af700821aa8d, type: 3}
   m_Name: SlowMeteorUpgradeData
   m_EditorClassIdentifier: 
-  maxLevel: 1
+  maxLevel: 3
   upgradeInfos:
-  - upgradeName: "Yava\u015Flatan alan"
-    description: "Yava\u015Flat\u0131yor"
-  - upgradeName: "Yava\u015Flatan alan"
-    description: "Baya yava\u015Flat\u0131yor"
+  - upgradeName: Slow Rain
+    description: Make them slow I guess
+  - upgradeName: Slow Rain
+    description: Make them slow I guess
+  - upgradeName: Slow Rain
+    description: Make them slow I guess
+  - upgradeName: Slow Rain
+    description: Make them slow I guess
   values:
   - damage: 0
     slowAmount: 0
     slowDuration: 0
     spawnMeteorDelay: 0
     meteorCount: 0
-  - damage: 3
+  - damage: 1
     slowAmount: 0.403
     slowDuration: 2
     spawnMeteorDelay: 7
+    meteorCount: 1
+  - damage: 1
+    slowAmount: 0.6
+    slowDuration: 3
+    spawnMeteorDelay: 7
+    meteorCount: 1
+  - damage: 1
+    slowAmount: 0.6
+    slowDuration: 3
+    spawnMeteorDelay: 5
     meteorCount: 1

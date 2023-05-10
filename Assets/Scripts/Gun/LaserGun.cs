@@ -40,7 +40,7 @@ public class LaserGun : WeaponBase
         {
             for(int i = 0; i < dataGun.BulletPerShoot; i++)
             {
-                dir += UnityEngine.Random.insideUnitSphere * UnityEngine.Random.Range(-0.2f, 0.2f);
+                dir += UnityEngine.Random.insideUnitSphere * UnityEngine.Random.Range(-0.1f, 0.1f);
                 Vector3 end = CalculateEndPos(start, dir);
                 var hits = Physics.RaycastAll(rayStart.position, dir, dataGun.Range, dataGun.whatIsHitable);
                 Array.Sort(hits, (hit1, hit2) => hit1.distance.CompareTo(hit2.distance));

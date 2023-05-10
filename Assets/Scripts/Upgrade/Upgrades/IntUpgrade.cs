@@ -1,14 +1,17 @@
 using UnityEngine;
 
-public class IntUpgrade : UpgradeBase
+namespace Upgrade
 {
-    [SerializeField] protected Int intToChange;
-    [SerializeField] protected IntUpgradeData upgradeData;
-
-    public override UpgradeDataBase UpgradeData => upgradeData;
-
-    protected override void OnLevelUp()
+    public class IntUpgrade : UpgradeBase
     {
-        intToChange.Value = upgradeData.values[level];
+        [SerializeField] protected Int intToChange;
+        [SerializeField] protected IntUpgradeData upgradeData;
+
+        public override UpgradeDataBase UpgradeData => upgradeData;
+
+        protected override void OnLevelUp()
+        {
+            intToChange.Value = upgradeData.values[level];
+        }
     }
 }

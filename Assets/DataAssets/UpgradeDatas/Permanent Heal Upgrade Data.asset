@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLevel: 2
   upgradeInfos:
-  - upgradeName: Ekstra Can
-    description: "Kal\u0131c\u0131 can kazan"
-  - upgradeName: Ekstra Can
-    description: "Kal\u0131c\u0131 can kazan"
-  - upgradeName: Ekstra Can
-    description: "Kal\u0131c\u0131 can kazan"
+  - upgradeName: Extra Health
+    description: Gain Permanent Life
+  - upgradeName: Extra Health
+    description: Gain Permanent Life
+  - upgradeName: Extra Health
+    description: Gain Permanent Life
   extraHealValues:
   - 0
-  - 10
-  - 20
+  - 40
+  - 50

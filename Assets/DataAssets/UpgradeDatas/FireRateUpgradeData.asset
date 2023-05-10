@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276bb5ccc3076e44fb8802adffa95a9f, type: 3}
   m_Name: FireRateUpgradeData
   m_EditorClassIdentifier: 
-  maxLevel: 1
+  maxLevel: 2
   upgradeInfos:
   - upgradeName: Fire Rate
-    description: Normal mermiler
+    description: Speed up your gun
   - upgradeName: Fire Rate
-    description: "\u0130nan\u0131lmaz h\u0131zl\u0131 mermiler"
+    description: Speed up your gun
+  - upgradeName: Fire Rate
+    description: Speed up your gun
   values:
   - 1
-  - 0.3
+  - 0.7
+  - 0.4

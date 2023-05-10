@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65ab97dc716ebd34c80ea0438c38ccd2, type: 3}
   m_Name: BulletPerShootUpgrade
   m_EditorClassIdentifier: 
-  maxLevel: 1
+  maxLevel: 2
   upgradeInfos:
-  - upgradeName: "Mermi Say\u0131s\u0131"
-    description: "Olduk\xE7a Normal"
-  - upgradeName: "Mermi Say\u0131s\u0131"
-    description: "Biri pompal\u0131 m\u0131 dedi"
-  values: 0100000002000000
+  - upgradeName: Bullet Per Shoot
+    description: Is That A Shotgun ?
+  - upgradeName: Bullet Per Shoot
+    description: Is That A Shotgun ?
+  - upgradeName: Bullet Per Shoot
+    description: Is That A Shotgun ?
+  values: 010000000200000003000000

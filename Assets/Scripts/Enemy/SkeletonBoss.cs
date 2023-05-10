@@ -36,9 +36,9 @@ public class SkeletonBoss : EnemyBaseAbstract
 
     protected override void Die()
     {
-        base.Die();
         isRunning = false;
         moveSpeed = walkSpeed;
+        base.Die();
     }
 
     protected override void Attack()
@@ -60,9 +60,9 @@ public class SkeletonBoss : EnemyBaseAbstract
         {
             if (hit.collider.CompareTag("Player"))
             {
-                if (hit.collider.TryGetComponent<ISimpleDamage>(out var damageable))
+                if (hit.collider.TryGetComponent<IDamageable>(out var damageable))
                 {
-                    damageable.ApplyDamage(attackDamage);
+                    damageable.ApplyDamage(hit, attackDamage);
                     break;
                 }
             }

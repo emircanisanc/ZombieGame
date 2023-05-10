@@ -15,9 +15,9 @@ MonoBehaviour:
   maxLevel: 1
   upgradeInfos:
   - upgradeName: Damage
-    description: Normal mermiler
+    description: Upgrade Gun Damage
   - upgradeName: Damage
-    description: "\xC7ok g\xFC\xE7l\xFC mermiler"
+    description: Upgrade Gun Damage
   values:
-  - 10
-  - 25
+  - 7
+  - 12

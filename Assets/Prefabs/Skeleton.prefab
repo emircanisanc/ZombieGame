@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1971052532249455927}
   m_Layer: 7
   m_Name: Skeleton
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,7 +47,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 624972611101044113}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.4
+  m_Radius: 0.8
   m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
@@ -70,7 +70,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.76
+  m_Radius: 0.9
   m_Height: 4
   m_Direction: 1
   m_Center: {x: 0, y: 2, z: 0}
@@ -112,9 +112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a20b6bd500018c4b998e367971a900f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exp: 20
-  attackRange: 2.5
-  attackRate: 0.7
+  exp: 50
+  attackRange: 3
+  attackRate: 1
   attackDamage: 20
   playerLayer:
     serializedVersion: 2
@@ -122,8 +122,8 @@ MonoBehaviour:
   attackOriginTransform: {fileID: 7080706827422089273}
   attackAnimCount: 3
   health: {fileID: 624972611101044110}
-  runSpeed: 5
-  healthToStartRun: 30
+  runSpeed: 6
+  healthToStartRun: 40
 --- !u!1 &3202114721138017732
 GameObject:
   m_ObjectHideFlags: 0

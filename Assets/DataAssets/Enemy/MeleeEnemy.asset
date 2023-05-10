@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77d871f538336004f92f3567d63fb95a, type: 3}
   m_Name: MeleeEnemy
   m_EditorClassIdentifier: 
-  value: 21
+  value: 10

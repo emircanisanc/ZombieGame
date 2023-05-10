@@ -63,7 +63,7 @@ public class WeaponBase : MonoBehaviour, IFireable, IReloadable
         {
             if(hit.collider.TryGetComponent<IDamageable>(out var damageable))
             {
-                GunEffect.CreateEffect(hit);
+                //GunEffect.CreateEffect(hit);
                 damageable.ApplyDamage(hit, dataGun.Damage);
                 hitCounter++;
                 if(hitCounter == dataGun.maxHitNumber)
