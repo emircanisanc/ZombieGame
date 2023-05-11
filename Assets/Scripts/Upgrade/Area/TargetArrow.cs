@@ -35,6 +35,7 @@ public class TargetArrow : MonoBehaviour
 
     private void DisableArrow()
     {
+        isActive = false;
         arrow.SetActive(false);
     }
     private void ActiveArrow()

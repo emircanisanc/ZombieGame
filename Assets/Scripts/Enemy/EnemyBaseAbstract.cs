@@ -19,13 +19,13 @@ public abstract class EnemyBaseAbstract : MonoBehaviour, IKillable, ISlowable
     [SerializeField] protected int attackDamage = 10;
     [SerializeField] protected LayerMask playerLayer;
     [SerializeField] protected Transform attackOriginTransform;
-    [SerializeField] private int attackAnimCount;
+    [SerializeField] protected int attackAnimCount;
 
     private Collider coll;
     protected NavMeshAgent agent;
     protected Animator animator;
     protected Transform player;
-    private float nextAttackTime;
+    protected float nextAttackTime;
     protected bool isAttacking;
     protected bool canMove;
     protected bool isDead;
@@ -42,8 +42,8 @@ public abstract class EnemyBaseAbstract : MonoBehaviour, IKillable, ISlowable
     void OnEnable()
     {
         isDead = false;
-        StartChasing();
         coll.enabled = true;
+        StartChasing();
         animator.SetFloat("MoveSpeed", moveSpeed);
         GetComponent<EnemyHealth>().OnEnemyDie += Die;
         UpgradeArea.OnSafeAreaEntered += StopChasing;
@@ -102,7 +102,7 @@ public abstract class EnemyBaseAbstract : MonoBehaviour, IKillable, ISlowable
         }
     }
 
-    protected abstract void Attack();
+    public abstract void Attack();
     protected virtual void Die()
     {
         coll.enabled = false;

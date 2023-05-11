@@ -22,7 +22,7 @@ public class SkeletonBoss : EnemyBaseAbstract
     protected override void Update()
     {
         base.Update();
-        if(!isRunning && health.CurrentHealth() < healthToStartRun)
+        if(!isRunning && health.CurrentHealth() < healthToStartRun && !isDead)
         {
             isRunning = true;
             moveSpeed = runSpeed;
@@ -36,12 +36,12 @@ public class SkeletonBoss : EnemyBaseAbstract
 
     protected override void Die()
     {
+        base.Die();
         isRunning = false;
         moveSpeed = walkSpeed;
-        base.Die();
     }
 
-    protected override void Attack()
+    public override void Attack()
     {
         StartCoroutine(AttackDelay());
     }

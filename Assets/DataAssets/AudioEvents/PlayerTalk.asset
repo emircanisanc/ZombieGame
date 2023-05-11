@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d3faf8fd56616441bda2dac5384b4c6, type: 3}
+  m_Name: PlayerTalk
+  m_EditorClassIdentifier: 
+  audioClips:
+  - {fileID: 8300000, guid: d687b0a478b194f44a09867d847bbd0c, type: 3}
+  - {fileID: 8300000, guid: 1cbcbdcec45c2a54b8a18e9b5b0b842a, type: 3}
+  - {fileID: 8300000, guid: 585be1c72ac78574e8e536d20136d3cf, type: 3}
+  - {fileID: 8300000, guid: a62f50d01d44bd644b66ebe4f55af6e7, type: 3}
+  - {fileID: 8300000, guid: d21f9ba2c1298554e944f9e8e0099c91, type: 3}
+  - {fileID: 8300000, guid: e057e9ec7bb37d34ba798100bfbc91c1, type: 3}
+  - {fileID: 8300000, guid: 41191b27075c95442a4970518d2116e2, type: 3}
+  - {fileID: 8300000, guid: e605a52ff743d1347b6f9b77a40112f8, type: 3}
+  - {fileID: 8300000, guid: c1cc54987baff4d4c918d1af2211338d, type: 3}
+  - {fileID: 8300000, guid: 0fb0260042a66544fa7a073d93d8fb69, type: 3}
+  - {fileID: 8300000, guid: 7367ce29fcb09804e869ed742201ef2e, type: 3}
+  volume:
+    min: 0.3
+    max: 0.7
+  pitch:
+    min: 1
+    max: 1

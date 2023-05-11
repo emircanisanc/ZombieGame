@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
+    [SerializeField] private LayerMask enemyLayer;
 
     public float Speed{get; private set;}
 
@@ -57,6 +58,9 @@ public class PlayerMovement : MonoBehaviour
             Vector3 camForward = Vector3.Scale(cam.forward, new Vector3(1, 0, 1)).normalized;
             direction = camForward * vertical + cam.right * horizontal;
 
+            if(Physics.SphereCast(transform.position + direction * 2f, 1, direction, out var hit, 0, enemyLayer))
+                direction = (hit.transform.position - transform.position).normalized;
+                
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);

@@ -60,6 +60,8 @@ public class Rocket : MonoBehaviour
         RaycastHit[] hits = Physics.SphereCastAll(transform.position, radius.Value, transform.forward, 0f, enemyLayer);
         foreach(var hit in hits)
         {
+            if(!hit.collider)
+                continue;
             if(hit.collider.TryGetComponent<ISimpleDamage>(out var  damageable))
             {
                 damageable.ApplyDamage(damage.Value);

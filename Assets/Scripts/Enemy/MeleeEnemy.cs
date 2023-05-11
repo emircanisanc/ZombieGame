@@ -5,7 +5,7 @@ using Interfaces;
 
 public class MeleeEnemy : EnemyBaseAbstract
 {
-    protected override void Attack()
+    public override void Attack()
     {
         StartCoroutine(AttackDelay());
     }
