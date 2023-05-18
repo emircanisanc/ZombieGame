@@ -61,6 +61,8 @@ public class WeaponBase : MonoBehaviour, IFireable, IReloadable
         int hitCounter = 0;
         foreach(var hit in hits)
         {
+            if(hit.collider == null)
+                continue;
             if(hit.collider.TryGetComponent<IDamageable>(out var damageable))
             {
                 //GunEffect.CreateEffect(hit);
@@ -137,21 +139,7 @@ public class WeaponBase : MonoBehaviour, IFireable, IReloadable
     private void StopFire()
     {
         Shoot = false;
-        PassiveMuzzle();
     }
 
-    # region MUZZLE
-    [SerializeField] private GameObject[] muzzles;
-    private int muzzleIndex = 0;
-    protected void ActiveMuzzle()
-    {
-        muzzleIndex = UnityEngine.Random.Range(0, muzzles.Length);
-        muzzles[muzzleIndex].SetActive(true);
-    }
-    protected void PassiveMuzzle()
-    {
-        muzzles[muzzleIndex].SetActive(false);
-    }
-    # endregion
 
 }

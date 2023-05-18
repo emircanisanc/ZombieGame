@@ -18,7 +18,7 @@ namespace Health
         public override float Health { 
             get => health.Value; 
             set { 
-                health.Value = value; 
+                health.Value = Mathf.Min(value, tempMaxHealth.Value); 
                 if ( value <= 0 && !IsDead ) {
                     IsDead = true;
                     OnPlayerDie?.Invoke();

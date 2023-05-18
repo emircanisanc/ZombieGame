@@ -11,6 +11,10 @@ public class LifeTime : MonoBehaviour
         StartCoroutine(SetDisable());
     }
 
+    void OnDisable() {
+        StopAllCoroutines();
+    }
+
     IEnumerator SetDisable()
     {
         yield return new WaitForSeconds(lifeTime);

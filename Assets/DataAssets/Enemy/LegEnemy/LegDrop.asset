@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9308a7b5e93763479e7ab3ce714f647, type: 3}
+  m_Name: LegDrop
+  m_EditorClassIdentifier: 
+  dropItems:
+  - type: {fileID: 11400000, guid: e5e90e67637cabf4593ce365bb16b992, type: 2}
+    chance: 0.7

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: NukeUpgradeData
   m_EditorClassIdentifier: 
   maxLevel: 2
+  icon: {fileID: 21300000, guid: 3a531b4223969714d84ba33590189784, type: 3}
   upgradeInfos:
   - upgradeName: Nuke
     description: Send Nukes

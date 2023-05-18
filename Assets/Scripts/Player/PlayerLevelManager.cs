@@ -20,23 +20,11 @@ public class PlayerLevelManager : MonoBehaviour
         targetExp.Value = targetExps[playerLevel.Value];
         playerExp.OnValueChanged += CheckLevelUp;
         UpgradeArea.OnSafeAreaEntered += LevelUp;
-        EnemyBaseAbstract.OnEnemyDied += AddExpOnEnemyKilled;
     }
     void OnDestroy()
     {
         playerExp.OnValueChanged -= CheckLevelUp;
         UpgradeArea.OnSafeAreaEntered -= LevelUp;
-        EnemyBaseAbstract.OnEnemyDied -= AddExpOnEnemyKilled;
-    }
-
-    private void AddExpOnEnemyKilled(GameObject enemy)
-    {
-        if(!canGainExp)
-            return;
-        if(enemy.TryGetComponent<IKillable>(out var killable))
-        {
-            playerExp.Value += killable.ExperienceOnDie();
-        }
     }
 
     private void LevelUp()

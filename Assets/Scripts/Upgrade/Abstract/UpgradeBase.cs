@@ -34,7 +34,7 @@ public abstract class UpgradeBase : MonoBehaviour
     }
     public void ShowUI()
     {
-        upgradeUI.Show(level, UpgradeData.upgradeInfos[level]);
+        upgradeUI.Show(level, UpgradeData.upgradeInfos[level], UpgradeData.icon);
     }
     public void CloseUI()
     {

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Permanent Heal Upgrade Data
   m_EditorClassIdentifier: 
   maxLevel: 2
+  icon: {fileID: 21300000, guid: 1be1534112dc3b74b9f6ef7a74f48013, type: 3}
   upgradeInfos:
   - upgradeName: Extra Health
     description: Gain Permanent Life

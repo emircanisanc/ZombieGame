@@ -14,11 +14,11 @@ public class GunEffect : MonoBehaviour
         gunEffectPool = GetComponent<MonoPool>();
     }
 
-    public static void CreateEffect(RaycastHit hit)
+    public static void CreateEffect(Vector3 hitPoint, Vector3 hitNormal)
     {
         var effect = gunEffectPool.Get();
-        effect.transform.position = hit.point;
-        effect.transform.eulerAngles = hit.normal;
+        effect.transform.position = hitPoint;
+        effect.transform.eulerAngles = hitNormal;
         effect.SetActive(true);
     }
 }

@@ -36,7 +36,15 @@ public class SkeletonBoss : EnemyBaseAbstract
 
     protected override void Die()
     {
-        base.Die();
+        itemDropHandler.Drop();
+        coll.enabled = false;
+        isDead = true;
+        isAttacking = false;
+        AnEnemyDied?.Invoke();
+        StopAllCoroutines();
+        StopChasing();
+        animator.SetTrigger("Die");
+        Invoke("Disappear", 2f);
         isRunning = false;
         moveSpeed = walkSpeed;
     }

@@ -6,26 +6,25 @@ using AudioEvents;
 
 namespace Damage
 {
-    [RequireComponent(typeof(AudioSource))]
     public class DamageReceiver : MonoBehaviour, IDamageable, ISimpleDamage
     {
         [SerializeField] private HealthBase healthBase;
         [SerializeField] private AudioEvent audioEventOnHitDamage;
-        [SerializeField] private AudioSource audioSource;
-        public Action OnDamage;
 
         public void ApplyDamage(RaycastHit hit, float baseDamage)
         {
+            if(healthBase.Health <= 0)
+                return;
             healthBase.Health = Math.Max(healthBase.Health - baseDamage, 0);
-            GunEffect.CreateEffect(hit);
-            audioEventOnHitDamage.Play(audioSource);
-            OnDamage?.Invoke();
+            GunEffect.CreateEffect(hit.point, hit.normal);
+            audioEventOnHitDamage.Play(Audio.Instance);
         }
 
         public void ApplyDamage(float baseDamage)
         {
+            if(healthBase.Health <= 0)
+                return;
             healthBase.Health = Math.Max(healthBase.Health - baseDamage, 0);
-            OnDamage?.Invoke();
         }
     }
 }

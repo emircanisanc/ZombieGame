@@ -15,12 +15,15 @@ public class UIManager : MonoBehaviour
     }
     private void ActiveLosePanel()
     {
-        PlayerHealth.OnPlayerDie -= ActiveLosePanel;
         losePanel.SetActive(true);
     }
     private void ActiveWinPanel()
     {
-        EnemySpawner.AllEnemiesDied -= ActiveWinPanel;
         winPanel.SetActive(true);
+    }
+
+    private void OnDestroy() {
+        PlayerHealth.OnPlayerDie -= ActiveLosePanel;
+        EnemySpawner.AllEnemiesDied -= ActiveWinPanel;
     }
 }

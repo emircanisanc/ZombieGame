@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BulletPerShootUpgrade
   m_EditorClassIdentifier: 
   maxLevel: 2
+  icon: {fileID: 21300000, guid: 56e88f991dae9ef42927401da61ef806, type: 3}
   upgradeInfos:
   - upgradeName: Bullet Per Shoot
     description: Is That A Shotgun ?

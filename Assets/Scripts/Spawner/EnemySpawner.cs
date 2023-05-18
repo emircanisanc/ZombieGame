@@ -59,11 +59,16 @@ public class EnemySpawner : MonoBehaviour
         deathCounter++;
         if(deathCounter == spawnedCounter)
         {
-            if(allEnemiesSpawned)
+            if(allEnemiesSpawned) {
                 AllEnemiesDied?.Invoke();
-            else
+            } else {
                 canSpawn = true;
+            }
         }
+    }
+
+    private void OnDestroy() {
+        EnemyBaseAbstract.AnEnemyDied -= CheckEnemyState;
     }
 
     void Update()
@@ -74,6 +79,9 @@ public class EnemySpawner : MonoBehaviour
         if (currentPhaseIndex >= spawnDatas.Count)
         {
             allEnemiesSpawned = true;
+            if(deathCounter == spawnedCounter) {
+                AllEnemiesDied?.Invoke();
+            }
             return;
         }
 

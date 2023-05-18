@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
     private IReloadable gun;
+    [SerializeField] private Joystick joystick;
     [SerializeField] private Transform cam;
 
     [SerializeField] private float speed = 6;
@@ -47,8 +48,8 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         # region PLAYER INPUT
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        float horizontal = joystick.Horizontal;
+        float vertical = joystick.Vertical;
         # endregion
         Vector3 direction = new Vector3(horizontal, 0f, vertical);
         Speed = direction.magnitude;
@@ -58,8 +59,10 @@ public class PlayerMovement : MonoBehaviour
             Vector3 camForward = Vector3.Scale(cam.forward, new Vector3(1, 0, 1)).normalized;
             direction = camForward * vertical + cam.right * horizontal;
 
-            if(Physics.SphereCast(transform.position + direction * 2f, 1, direction, out var hit, 0, enemyLayer))
-                direction = (hit.transform.position - transform.position).normalized;
+            var hits = Physics.OverlapSphere(transform.position + direction * 3f, 2f, enemyLayer);
+            if(hits.Length > 0) {
+                direction = (hits[0].transform.position - transform.position).normalized;
+            }
                 
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
@@ -67,6 +70,20 @@ public class PlayerMovement : MonoBehaviour
 
             controller.Move(direction * speed * Time.deltaTime);
         }
+        else
+        {
+            var hits = Physics.OverlapSphere(transform.position + direction * 2.5f, 2.5f, enemyLayer);
+            if(hits.Length > 0) {
+                direction = (hits[0].transform.position - transform.position).normalized;
+                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            }
+        }
+    }
+
+    private void OnDrawGizmosSelected() {
+        Gizmos.DrawWireSphere(transform.position + transform.forward * 2f, 4);
     }
 
     private void EnableMove()

@@ -13,8 +13,6 @@ public class LaserGun : WeaponBase
             {
                 if(!isReloading)
                 {
-                    PassiveMuzzle();
-                    ActiveMuzzle();
                     Fire();
                 }
                 

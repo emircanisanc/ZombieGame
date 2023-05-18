@@ -5,14 +5,10 @@ using Health;
 using System;
 using System.Collections;
 
-public abstract class EnemyBaseAbstract : MonoBehaviour, IKillable, ISlowable
+[RequireComponent(typeof(ItemDropHandler))]
+public abstract class EnemyBaseAbstract : MonoBehaviour, ISlowable
 {
-
-    public static Action<GameObject> OnEnemyDied;
     public static Action AnEnemyDied;
-
-    [SerializeField] private int exp;
-    public int ExperienceOnDie() => exp;
 
     [SerializeField] protected float attackRange = 2f;
     [SerializeField] protected float attackRate = 2f;
@@ -20,8 +16,9 @@ public abstract class EnemyBaseAbstract : MonoBehaviour, IKillable, ISlowable
     [SerializeField] protected LayerMask playerLayer;
     [SerializeField] protected Transform attackOriginTransform;
     [SerializeField] protected int attackAnimCount;
+    [SerializeField] protected ItemDropHandler itemDropHandler;
 
-    private Collider coll;
+    protected Collider coll;
     protected NavMeshAgent agent;
     protected Animator animator;
     protected Transform player;
@@ -57,7 +54,7 @@ public abstract class EnemyBaseAbstract : MonoBehaviour, IKillable, ISlowable
         UpgradeArea.OnSafeAreaDisabled -= StartChasing;
     }
 
-    private void StopChasing()
+    protected void StopChasing()
     {
         StopMove();
         canMove = false;   
@@ -105,15 +102,16 @@ public abstract class EnemyBaseAbstract : MonoBehaviour, IKillable, ISlowable
     public abstract void Attack();
     protected virtual void Die()
     {
+        itemDropHandler.Drop();
         coll.enabled = false;
         isDead = true;
         isAttacking = false;
-        OnEnemyDied?.Invoke(gameObject);
         AnEnemyDied?.Invoke();
         StopAllCoroutines();
         StopChasing();
-        animator.SetTrigger("Die");
-        Invoke("Disappear", 2f);
+        Disappear();
+        //animator.SetTrigger("Die");
+        //Invoke("Disappear", 2f);
     }
     private void Disappear()
     {

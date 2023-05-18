@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: AmmoSizeUpgrade
   m_EditorClassIdentifier: 
   maxLevel: 1
+  icon: {fileID: 21300000, guid: a512d82aca6fabe4cb704d1863896e73, type: 3}
   upgradeInfos:
   - upgradeName: Ammo Size
     description: Lots of Bullet
