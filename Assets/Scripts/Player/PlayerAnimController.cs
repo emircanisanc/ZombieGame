@@ -20,7 +20,7 @@ public class PlayerAnimController : MonoBehaviour
         UpgradeArea.OnSafeAreaDisabled += StartFight;
     }
 
-    void Update()
+    void LateUpdate()
     {
         animator.SetFloat("Speed", playerMovement.Speed);
     }

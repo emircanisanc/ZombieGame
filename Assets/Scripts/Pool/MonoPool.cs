@@ -23,7 +23,12 @@ public class MonoPool : MonoBehaviour
 
     public GameObject Get()
     {
-        GameObject obj = pool.Find(x => !x.activeSelf); 
+        GameObject obj = null;
+        foreach (GameObject temp in pool) {
+            if (!temp.activeSelf) {
+                obj = temp;
+            }
+        }
         if(obj == null)
         {
             obj = Instantiate(prefab);

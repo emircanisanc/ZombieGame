@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65ab97dc716ebd34c80ea0438c38ccd2, type: 3}
   m_Name: AmmoSizeUpgrade
   m_EditorClassIdentifier: 
-  maxLevel: 1
+  maxLevel: 3
   icon: {fileID: 21300000, guid: a512d82aca6fabe4cb704d1863896e73, type: 3}
   upgradeInfos:
   - upgradeName: Ammo Size
     description: Lots of Bullet
   - upgradeName: Ammo Size
     description: Lots of Bullet
-  values: 1400000023000000
+  - upgradeName: Ammo Size
+    description: Lots of Bullet
+  values: 140000002300000064000000fa000000

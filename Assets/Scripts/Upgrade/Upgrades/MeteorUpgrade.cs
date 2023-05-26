@@ -37,7 +37,7 @@ namespace Upgrade
             }
         }
 
-        void Update()
+        void FixedUpdate()
         {
             if (!isEnable)
                 return;

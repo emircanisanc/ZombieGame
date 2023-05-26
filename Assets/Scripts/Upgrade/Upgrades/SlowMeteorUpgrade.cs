@@ -40,7 +40,7 @@ namespace Upgrade
             }
         }
 
-        void Update()
+        void FixedUpdate()
         {
             if (!isEnable)
                 return;
@@ -60,7 +60,9 @@ namespace Upgrade
             {
                 Vector3 randomPos;
 
-                var direction = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), 0, Mathf.Sin(angle * Mathf.Deg2Rad));
+                float rad = angle * Mathf.Deg2Rad;
+
+                var direction = new Vector3(Mathf.Cos(rad), 0, Mathf.Sin(rad));
 
                 randomPos = transform.position + direction * radius;
 

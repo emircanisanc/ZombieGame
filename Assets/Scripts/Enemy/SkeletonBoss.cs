@@ -19,9 +19,9 @@ public class SkeletonBoss : EnemyBaseAbstract
         walkSpeed = moveSpeed;
     }
 
-    protected override void Update()
+    public override void UpdateMethod(Vector3 playerPos)
     {
-        base.Update();
+        base.UpdateMethod(playerPos);
         if(!isRunning && health.CurrentHealth() < healthToStartRun && !isDead)
         {
             isRunning = true;

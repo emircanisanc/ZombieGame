@@ -28,9 +28,9 @@ MonoBehaviour:
     nukeCount: 0
   - damage: 20
     nukeRadius: 3
-    spawnNukeDelay: 10
+    spawnNukeDelay: 9
     nukeCount: 1
   - damage: 20
     nukeRadius: 3
-    spawnNukeDelay: 10
+    spawnNukeDelay: 9
     nukeCount: 2

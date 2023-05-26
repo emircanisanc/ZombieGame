@@ -14,9 +14,12 @@ public class Rocket : MonoBehaviour
     private Vector3 dir;
     private bool isActive;
 
+    RaycastHit[] hits;
+
     void Awake()
     {
         rg = GetComponent<Rigidbody>();
+        hits = new RaycastHit[15];
     }
 
     public void SetRocketActive(Vector3 targetPos)
@@ -57,14 +60,15 @@ public class Rocket : MonoBehaviour
     private void ApplyDamageToArea()
     {
         // check area
-        RaycastHit[] hits = Physics.SphereCastAll(transform.position, radius.Value, transform.forward, 0f, enemyLayer);
-        foreach(var hit in hits)
-        {
-            if(!hit.collider)
-                continue;
-            if(hit.collider.TryGetComponent<ISimpleDamage>(out var  damageable))
+        if(Physics.SphereCastNonAlloc(transform.position, radius.Value, transform.forward, hits,  0f, enemyLayer) > 0) {
+            foreach(var hit in hits)
             {
-                damageable.ApplyDamage(damage.Value);
+                if(!hit.collider)
+                    continue;
+                if(hit.collider.TryGetComponent<ISimpleDamage>(out var  damageable))
+                {
+                    damageable.ApplyDamage(damage.Value);
+                }
             }
         }
         Invoke("SetDisabled", 1.5f);
@@ -75,9 +79,4 @@ public class Rocket : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    void OnDrawGizmosSelected()
-    {
-        if (radius)
-            Gizmos.DrawWireSphere(transform.position, radius.Value);
-    }
 }

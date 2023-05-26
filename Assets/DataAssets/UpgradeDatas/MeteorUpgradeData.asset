@@ -28,11 +28,11 @@ MonoBehaviour:
     spawnMeteorDelay: 0
     meteorCount: 0
   - damage: 1
-    spawnMeteorDelay: 10
+    spawnMeteorDelay: 8
     meteorCount: 1
   - damage: 1
-    spawnMeteorDelay: 10
+    spawnMeteorDelay: 8
     meteorCount: 2
   - damage: 2
-    spawnMeteorDelay: 10
+    spawnMeteorDelay: 8
     meteorCount: 2

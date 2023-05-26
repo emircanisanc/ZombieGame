@@ -10,16 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d3faf8fd56616441bda2dac5384b4c6, type: 3}
-  m_Name: ZombieDamage
+  m_Name: LaserGun
   m_EditorClassIdentifier: 
   audioClips:
-  - {fileID: 8300000, guid: 88a647aa1d2a64de0b8000593319f012, type: 3}
-  - {fileID: 8300000, guid: 13e8aa28a5d814e1b8886115fbf54529, type: 3}
-  - {fileID: 8300000, guid: 80f2f6184ca5c421e830af89570a605a, type: 3}
-  - {fileID: 8300000, guid: bb6cdd13aeb95f743847b1cd460889bc, type: 3}
+  - {fileID: 8300000, guid: 4310474905e266640852f43bd609a1a4, type: 3}
   volume:
-    min: 0.2
-    max: 0.6
-  pitch:
-    min: 0.5
+    min: 0.3
     max: 0.7
+  pitch:
+    min: 0.7
+    max: 1

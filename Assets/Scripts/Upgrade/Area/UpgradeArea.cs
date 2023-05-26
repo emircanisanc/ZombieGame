@@ -15,6 +15,8 @@ public class UpgradeArea : MonoBehaviour
     [SerializeField] private float spawnRadius;
     [SerializeField] private Transform sphereTransform;
 
+    private bool isEntered;
+
     void Awake()
     {
         startPos = sphereTransform.localPosition;
@@ -35,8 +37,9 @@ public class UpgradeArea : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Player") && !isEntered)
         {
+            isEntered = true;
             OnSafeAreaEntered?.Invoke();
             Time.timeScale = 0;
         }    
@@ -46,6 +49,7 @@ public class UpgradeArea : MonoBehaviour
     {
         gameObject.SetActive(false);
         Time.timeScale = 1;
+        isEntered = false;
     }
 
     public bool TryEnableAtRandomPosition()
@@ -61,13 +65,10 @@ public class UpgradeArea : MonoBehaviour
             randomPoint = new Vector3(UnityEngine.Random.Range(-50f, 50f), 0f, UnityEngine.Random.Range(-50f, 50f));
             i--;
             if(i == 0)
-                Debug.Break();
+                break;
         }
         transform.position = randomPoint;
         gameObject.SetActive(true);
         return true;
-    }
-    private void OnDrawGizmosSelected() {
-        Gizmos.DrawWireSphere(Vector3.zero, spawnRadius);
     }
 }

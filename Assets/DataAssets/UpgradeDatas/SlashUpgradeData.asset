@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2db0567fdc3bfe44a0aa997d0794470, type: 3}
   m_Name: SlashUpgradeData
   m_EditorClassIdentifier: 
-  maxLevel: 2
+  maxLevel: 3
   icon: {fileID: 21300000, guid: 728cafe97c950d847b4437124b2b5a46, type: 3}
   upgradeInfos:
   - upgradeName: Slash
@@ -34,3 +34,7 @@ MonoBehaviour:
     slashDelay: 3.5
     slashRadius: 3.4
     slashParticleSize: 1.5
+  - slashDamage: 5
+    slashDelay: 3
+    slashRadius: 4.6
+    slashParticleSize: 2

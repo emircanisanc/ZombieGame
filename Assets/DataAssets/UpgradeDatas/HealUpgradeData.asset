@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f55876825f64a77418a28bfe0d23f56b, type: 3}
   m_Name: HealUpgradeData
   m_EditorClassIdentifier: 
-  maxLevel: 1
+  maxLevel: 2
   icon: {fileID: 21300000, guid: f457db2fd22862a489a52c85028c5256, type: 3}
   upgradeInfos:
   - upgradeName: Heal
@@ -23,4 +23,6 @@ MonoBehaviour:
   - healAmount: 0
     healDelay: 0
   - healAmount: 20
+    healDelay: 7
+  - healAmount: 40
     healDelay: 7

@@ -7,7 +7,7 @@ public class GunEffect : MonoBehaviour
 {
     private static GunEffect instance;
     private static MonoPool gunEffectPool;
-    
+
     void Awake()
     {
         instance = this;

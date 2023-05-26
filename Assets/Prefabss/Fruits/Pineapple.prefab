@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 9075316969478219151}
   - component: {fileID: 9075316969478219148}
   - component: {fileID: 9075316969478219149}
+  - component: {fileID: -1306545819586735891}
   m_Layer: 9
   m_Name: Pineapple
   m_TagString: Untagged
@@ -206,3 +207,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fruitData: {fileID: 11400000, guid: a90256b6dc4896b4db471097c8306ee7, type: 2}
+--- !u!54 &-1306545819586735891
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9075316969478219136}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

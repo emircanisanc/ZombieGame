@@ -1,6 +1,7 @@
 using Health;
 using UnityEngine;
 using Interfaces;
+using System;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
@@ -20,6 +21,13 @@ public class PlayerMovement : MonoBehaviour
 
     private bool canMove = true;
 
+    private float horizontal;
+    private float vertical;
+
+    RaycastHit[] hits;
+    Transform lastTarget;
+    private int rayCounter;
+
     void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -30,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
         PlayerHealth.OnPlayerDie += DisableMove;
         UpgradeArea.OnSafeAreaEntered += DisableMove;
         UpgradeArea.OnSafeAreaDisabled += EnableMove;
+
+        hits = new RaycastHit[15];
     }
     void OnDestroy()
     {
@@ -48,42 +58,77 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         # region PLAYER INPUT
-        float horizontal = joystick.Horizontal;
-        float vertical = joystick.Vertical;
+        horizontal = joystick.Horizontal;
+        vertical = joystick.Vertical;
         # endregion
         Vector3 direction = new Vector3(horizontal, 0f, vertical);
         Speed = direction.magnitude;
-        if(direction.sqrMagnitude >= 0.1f)
+        if(Speed >= 0.1f)
         {
             // Calculate the direction relative to the camera's forward vector
             Vector3 camForward = Vector3.Scale(cam.forward, new Vector3(1, 0, 1)).normalized;
             direction = camForward * vertical + cam.right * horizontal;
 
-            var hits = Physics.OverlapSphere(transform.position + direction * 3f, 2f, enemyLayer);
-            if(hits.Length > 0) {
-                direction = (hits[0].transform.position - transform.position).normalized;
-            }
-                
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            RotatePlayer(direction);
 
+            // Move player towards direction
             controller.Move(direction * speed * Time.deltaTime);
         }
         else
         {
-            var hits = Physics.OverlapSphere(transform.position + direction * 2.5f, 2.5f, enemyLayer);
-            if(hits.Length > 0) {
-                direction = (hits[0].transform.position - transform.position).normalized;
-                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+            if(lastTarget == null)
+            {
+                rayCounter++;
+                if(rayCounter % 10 == 0)
+                {
+                    rayCounter = 1;
+                } else {
+                    return;
+                }
+            }
+
+            Vector3 pos = transform.position;
+            Vector3 forw = transform.forward;
+
+            if(Physics.Raycast(pos, forw, out var hit, 2f, enemyLayer))
+            {
+                lastTarget = hit.transform;
+                return;
+            }
+                
+            if(Physics.SphereCastNonAlloc(pos + forw * 0.5f, 2.5f, forw, hits, 0f, enemyLayer) > 0) {
+                if (Contains(hits) && lastTarget.gameObject.activeSelf) {
+                    if (Vector3.Distance(pos, lastTarget.position) > 2f) {
+                        lastTarget = hits[0].transform;
+                    } 
+                } else {
+                    lastTarget = hits[0].transform;
+                }
+                direction = (lastTarget.position - pos).normalized;
+                RotatePlayer(direction);
+            } else {
+                lastTarget = null;
             }
         }
     }
 
-    private void OnDrawGizmosSelected() {
-        Gizmos.DrawWireSphere(transform.position + transform.forward * 2f, 4);
+    private void RotatePlayer(Vector3 direction) {
+        // Rotate player towards movement                
+        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+    }
+
+    private bool Contains(RaycastHit[] hits) {
+        if (lastTarget == null)
+            return false;
+        foreach (var hit in hits) {
+            if (hit.transform == lastTarget)
+                return true;
+            continue;
+        }
+        return false;
     }
 
     private void EnableMove()

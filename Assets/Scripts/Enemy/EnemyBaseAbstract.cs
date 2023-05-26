@@ -22,6 +22,7 @@ public abstract class EnemyBaseAbstract : MonoBehaviour, ISlowable
     protected NavMeshAgent agent;
     protected Animator animator;
     protected Transform player;
+    private Vector3 playerPos;
     protected float nextAttackTime;
     protected bool isAttacking;
     protected bool canMove;
@@ -46,9 +47,11 @@ public abstract class EnemyBaseAbstract : MonoBehaviour, ISlowable
         UpgradeArea.OnSafeAreaEntered += StopChasing;
         UpgradeArea.OnSafeAreaDisabled += StartChasing;
         agent.speed = moveSpeed;
+        EnemyGroupController.Enemies.Add(this);
     }
     void OnDisable()
     {
+        EnemyGroupController.Enemies.Remove(this);
         GetComponent<EnemyHealth>().OnEnemyDie -= Die;
         UpgradeArea.OnSafeAreaEntered -= StopChasing;
         UpgradeArea.OnSafeAreaDisabled -= StartChasing;
@@ -77,14 +80,15 @@ public abstract class EnemyBaseAbstract : MonoBehaviour, ISlowable
         agent.isStopped = false;
     }
 
-    protected virtual void Update()
+    public virtual void UpdateMethod(Vector3 playerPos)
     {
         if(!canMove)
             return;
         if (!isAttacking)
         {
-            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-            agent.SetDestination(player.position);
+            //playerPos = player.position;
+            float distanceToPlayer = Vector3.Distance(transform.position, playerPos);
+            agent.SetDestination(playerPos);
             if (distanceToPlayer <= attackRange)
             {
                 FaceTarget();
@@ -119,7 +123,7 @@ public abstract class EnemyBaseAbstract : MonoBehaviour, ISlowable
     }
     private void FaceTarget()
     {
-        Vector3 dir = (player.position - transform.position).normalized;
+        Vector3 dir = (playerPos - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(dir.x, 0, dir.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
     }

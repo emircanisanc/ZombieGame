@@ -22,7 +22,6 @@ public class DataGun : ScriptableObject
     public float Range => range.Value;
     
     public int maxHitNumber = 1;
-    public AudioClip fireSound;
     public LayerMask whatIsHitable;
     public Color fireColor;
 }

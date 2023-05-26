@@ -19,6 +19,14 @@ namespace Upgrade
         private float slashDelay;
         private float nextSlashTime;
         private bool isEnable = false;
+
+        RaycastHit[] hits;
+
+        void Awake()
+        {
+            hits = new RaycastHit[15];
+        }
+
         protected override void OnLevelUp()
         {
             slashDamage = slashUpgradeData.slashDatas[level].slashDamage;
@@ -33,7 +41,7 @@ namespace Upgrade
             }
         }
 
-        void Update()
+        void FixedUpdate()
         {
             if (!isEnable)
                 return;
@@ -51,9 +59,11 @@ namespace Upgrade
         }
         private void ApplyDamageToArea()
         {
-            RaycastHit[] hits = Physics.SphereCastAll(transform.position, slashRadius, transform.forward, 0f, enemyLayer);
+            Physics.SphereCastNonAlloc(transform.position, slashRadius, transform.forward, hits, 0f, enemyLayer);
             foreach (RaycastHit hit in hits)
             {
+                if (!hit.collider)
+                    continue;
                 if (hit.collider.TryGetComponent<IDamageable>(out var damageable))
                 {
                     damageable.ApplyDamage(hit, slashDamage);
@@ -66,9 +76,5 @@ namespace Upgrade
             slashParticle.SetActive(false);
         }
 
-        void OnDrawGizmosSelected()
-        {
-            Gizmos.DrawWireSphere(transform.position, slashRadius);
-        }
     }
 }

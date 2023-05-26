@@ -23,7 +23,7 @@ public class RandomAudioEvent : MonoBehaviour
         UpgradeArea.OnSafeAreaEntered -= DisableEvents;
         UpgradeArea.OnSafeAreaDisabled -= EnableEvents;
     }
-    void Update()
+    void FixedUpdate()
     {
         if(!isActive)
             return;

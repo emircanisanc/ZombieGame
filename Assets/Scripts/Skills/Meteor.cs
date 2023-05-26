@@ -10,10 +10,6 @@ public class Meteor : MonoBehaviour
     [SerializeField] private float radius = 4.3f;
     [SerializeField] private LayerMask enemyLayer;
 
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawWireSphere(transform.position, radius);   
-    }
 
     [SerializeField] private Float damagePerHit;
 

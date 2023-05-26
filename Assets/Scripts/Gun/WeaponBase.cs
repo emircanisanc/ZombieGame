@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Interfaces;
 using Health;
+using AudioEvents;
 
 public class WeaponBase : MonoBehaviour, IFireable, IReloadable
 {
@@ -23,6 +24,9 @@ public class WeaponBase : MonoBehaviour, IFireable, IReloadable
     [SerializeField] protected Transform firePoint;
     [SerializeField] protected Transform rayStart;
 
+    private AudioSource audioSource;
+    [SerializeField] private AudioEvent audioEvent;
+
     protected float lastFireTime;
     [SerializeField] private Int currentAmmo;
     
@@ -38,6 +42,7 @@ public class WeaponBase : MonoBehaviour, IFireable, IReloadable
         PlayerHealth.OnPlayerDie += DisableGun;
         UpgradeArea.OnSafeAreaEntered += StopFire;
         UpgradeArea.OnSafeAreaDisabled += StartFire;
+        audioSource = GetComponent<AudioSource>();
     }
     void Start()
     {
@@ -98,8 +103,7 @@ public class WeaponBase : MonoBehaviour, IFireable, IReloadable
     protected void OnFired()
     {
         ReduceAmmo();
-        if(dataGun.fireSound)
-            AudioSource.PlayClipAtPoint(dataGun.fireSound, firePoint.position);
+        audioEvent.Play(audioSource);
         OnFire?.Invoke();
         lastFireTime = Time.timeSinceLevelLoad;
     }

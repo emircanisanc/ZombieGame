@@ -35,7 +35,12 @@ public class PoolManager : MonoBehaviour
 
     public GameObject Get(ObjType type)
     {
-        GameObject obj = pool[type].Find(x => !x.activeSelf); 
+        GameObject obj = null;
+        foreach(GameObject temp in pool[type]) {
+            if(!temp.activeSelf) {
+                obj = temp;
+            }
+        }
         if(obj == null)
         {
             obj = Instantiate(prefabs.Find(x => x.type == type).prefab);
