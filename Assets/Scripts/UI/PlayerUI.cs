@@ -23,16 +23,16 @@ public class PlayerUI : MonoBehaviour
 
     void Awake()
     {
-        currentAmmo.OnValueChanged += UpdateAmmo;
-        maxAmmo.OnValueChanged += UpdateMaxAmmo;
+        //currentAmmo.OnValueChanged += UpdateAmmo;
+        //maxAmmo.OnValueChanged += UpdateMaxAmmo;
         health.OnValueChanged += UpdateHealth;
         maxHealth.OnValueChanged += UpdateMaxHealth;
         currentExp.OnValueChanged += UpdateExpBar;
     }
     void OnDestroy()
     {
-        currentAmmo.OnValueChanged -= UpdateAmmo;
-        maxAmmo.OnValueChanged -= UpdateMaxAmmo;
+        //currentAmmo.OnValueChanged -= UpdateAmmo;
+        //maxAmmo.OnValueChanged -= UpdateMaxAmmo;
         health.OnValueChanged -= UpdateHealth;
         maxHealth.OnValueChanged -= UpdateMaxHealth;
         currentExp.OnValueChanged -= UpdateExpBar;

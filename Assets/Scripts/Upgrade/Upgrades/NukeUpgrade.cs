@@ -20,11 +20,16 @@ namespace Upgrade
         private int nukeCount;
         private float spawnNukeDelay;
         private float nextSpawnTime;
-        private bool isEnable = false;
 
         void Awake()
         {
             nukePool = GetComponent<MonoPool>();
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+            enabled = false;
         }
 
         protected override void OnLevelUp()
@@ -35,15 +40,13 @@ namespace Upgrade
             nukeRadiusToChange.Value = nukeUpgradeData.values[level].nukeRadius;
             if (level > 0)
             {
-                isEnable = true;
+                enabled = true;
                 nextSpawnTime = Time.timeSinceLevelLoad + spawnNukeDelay;
             }
         }
 
         void FixedUpdate()
         {
-            if (!isEnable)
-                return;
             if (Time.timeSinceLevelLoad >= nextSpawnTime)
             {
                 if(SpawnNukes())

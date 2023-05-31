@@ -13,7 +13,6 @@ namespace Upgrade
         private int meteorCount;
         private float spawnMeteorDelay;
         private float nextSpawnTime;
-        private bool isEnable = false;
 
         [Header("SlowMeteor Datas")]
         [SerializeField] private Float damagePerHit;
@@ -23,6 +22,12 @@ namespace Upgrade
         void Awake()
         {
             slowMeteorPool = GetComponent<MonoPool>();
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+            enabled = false;
         }
 
         protected override void OnLevelUp()
@@ -35,15 +40,13 @@ namespace Upgrade
             slowDuration.Value = data.slowDuration;
             if (level > 0)
             {
-                isEnable = true;
+                enabled = true;
                 nextSpawnTime = Time.timeSinceLevelLoad + spawnMeteorDelay;
             }
         }
 
         void FixedUpdate()
         {
-            if (!isEnable)
-                return;
             if (Time.timeSinceLevelLoad >= nextSpawnTime)
             {
                 nextSpawnTime = Time.timeSinceLevelLoad + spawnMeteorDelay;

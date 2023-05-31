@@ -16,13 +16,13 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 9947c12ba4dee8649a2286e459a65e44, type: 3}
   upgradeInfos:
   - upgradeName: Fire Rate
-    description: Speed up your gun
+    description: Fire faster
   - upgradeName: Fire Rate
-    description: Speed up your gun
+    description: Fire more faster
   - upgradeName: Fire Rate
-    description: Speed up your gun
+    description: Fire like a terminator
   values:
   - 1
   - 0.7
   - 0.4
-  - 0.1
+  - 0.2

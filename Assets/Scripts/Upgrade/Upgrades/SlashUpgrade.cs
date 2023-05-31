@@ -18,13 +18,18 @@ namespace Upgrade
         private float slashDamage;
         private float slashDelay;
         private float nextSlashTime;
-        private bool isEnable = false;
 
         RaycastHit[] hits;
 
         void Awake()
         {
             hits = new RaycastHit[15];
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+            enabled = false;
         }
 
         protected override void OnLevelUp()
@@ -36,15 +41,13 @@ namespace Upgrade
             slashParticle.transform.localScale = new Vector3(size, size, size);
             if (level > 0)
             {
-                isEnable = true;
+                enabled = true;
                 nextSlashTime = Time.timeSinceLevelLoad + slashDelay;
             }
         }
 
         void FixedUpdate()
         {
-            if (!isEnable)
-                return;
             if (Time.timeSinceLevelLoad >= nextSlashTime)
             {
                 nextSlashTime = Time.timeSinceLevelLoad + slashDelay;

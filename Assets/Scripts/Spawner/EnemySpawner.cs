@@ -1,14 +1,12 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using TMPro;
 
 [RequireComponent(typeof(PoolManager))]
 public class EnemySpawner : MonoBehaviour
 {
-
-    # region Classes
-    [System.Serializable]
+    [Serializable]
     public class SpawnData
     {
         public int phase;
@@ -17,24 +15,27 @@ public class EnemySpawner : MonoBehaviour
         public SpawnType spawnType;
         public List<SpawnEnemyData> spawnEnemyDatas;
     }
-    [System.Serializable]
+
+    [Serializable]
     public class SpawnEnemyData
     {
         public ObjType enemyType;
-        [HideInInspector] public float spawnTimer;
         public float spawnDelay;
+        [HideInInspector] public float spawnTimer;
     }
+
     public enum SpawnType
     {
         Unit,
         Boss
     }
-    # endregion
 
     private PoolManager poolManager;
     [SerializeField] private List<SpawnData> spawnDatas;
     [SerializeField] private Transform[] spawnPositions;
     [SerializeField] private float positionRandomness = 2f;
+    [SerializeField] private TextMeshProUGUI waveText;
+
     private int currentPhaseIndex;
     private float phaseTimer;
     private float waitTimer;
@@ -47,114 +48,139 @@ public class EnemySpawner : MonoBehaviour
 
     public static Action AllEnemiesDied;
 
-    void Start()
+    private void Start()
     {
         poolManager = GetComponent<PoolManager>();
         canSpawn = true;
         EnemyBaseAbstract.AnEnemyDied += CheckEnemyState;
     }
 
+    private void OnDestroy()
+    {
+        EnemyBaseAbstract.AnEnemyDied -= CheckEnemyState;
+    }
+
     private void CheckEnemyState()
     {
         deathCounter++;
-        if(deathCounter == spawnedCounter)
+        if (deathCounter >= spawnedCounter && !allEnemiesSpawned)
         {
-            if(allEnemiesSpawned) {
+            if (canSpawn)
+                return;
+
+            if (allEnemiesSpawned)
+            {
                 AllEnemiesDied?.Invoke();
-            } else {
+            }
+            else
+            {
                 canSpawn = true;
             }
         }
     }
 
-    private void OnDestroy() {
-        EnemyBaseAbstract.AnEnemyDied -= CheckEnemyState;
-    }
-
-    void Update()
+    private void Update()
     {
-        if(allEnemiesSpawned)
+        if (allEnemiesSpawned)
             return;
 
         if (currentPhaseIndex >= spawnDatas.Count)
         {
             allEnemiesSpawned = true;
-            if(deathCounter == spawnedCounter) {
+            if (deathCounter == spawnedCounter)
+            {
                 AllEnemiesDied?.Invoke();
             }
             return;
         }
 
-        if(!canSpawn)
+        if (!canSpawn)
             return;
-        
+
         var currentPhase = spawnDatas[currentPhaseIndex];
 
-        if(!isPhaseStarted)
+        if (!isPhaseStarted)
         {
             waitTimer += Time.deltaTime;
-            if(waitTimer >= currentPhase.delayAfterPhase)
+            if (waitTimer >= currentPhase.delayAfterPhase)
+            {
                 isPhaseStarted = true;
+            }
             else
+            {
                 return;
+            }
         }
 
-        if(currentPhase.spawnType == SpawnType.Boss)
+        if (currentPhase.spawnType == SpawnType.Boss)
         {
-            if(deathCounter == spawnedCounter)
+            if (deathCounter == spawnedCounter)
             {
-                foreach (var enemyData in currentPhase.spawnEnemyDatas)
-                {
-                    Vector3 spawnPos = spawnPositions[UnityEngine.Random.Range(0, spawnPositions.Length)].position;
-                    var randomness = UnityEngine.Random.insideUnitCircle * UnityEngine.Random.Range(-positionRandomness, positionRandomness);
-                    spawnPos += new Vector3(randomness.x, 0, randomness.y);
-                    var enemy = poolManager.Get(enemyData.enemyType);
-                    enemy.transform.SetParent(transform);
-                    enemy.transform.position = spawnPos;
-                    enemy.SetActive(true);
-                    enemyData.spawnTimer = enemyData.spawnDelay;
-                    spawnedCounter++;
-                }
-                currentPhaseIndex++;
-                phaseTimer = 0;
-                isPhaseStarted = false;
+                SpawnBossEnemies(currentPhase);
+                NextPhase();
                 canSpawn = false;
             }
             return;
         }
 
-
         phaseTimer += Time.deltaTime;
-        
+
         if (phaseTimer >= currentPhase.phaseDuration)
         {
-            if((float)deathCounter / (float) spawnedCounter >= 0.9f)
+            if ((float)deathCounter / (float)spawnedCounter >= 0.9f)
             {
-                currentPhaseIndex++;
-                phaseTimer = 0;
-                isPhaseStarted = false;
+                NextPhase();
             }
             return;
         }
-        
+
         foreach (var enemyData in currentPhase.spawnEnemyDatas)
         {
             enemyData.spawnTimer -= Time.deltaTime;
             if (enemyData.spawnTimer <= 0)
             {
-                Vector3 spawnPos = spawnPositions[UnityEngine.Random.Range(0, spawnPositions.Length)].position;
-                var randomness = UnityEngine.Random.insideUnitCircle * UnityEngine.Random.Range(-positionRandomness, positionRandomness);
-                spawnPos += new Vector3(randomness.x, 0, randomness.y);
-                var enemy = poolManager.Get(enemyData.enemyType);
-                enemy.transform.SetParent(transform);
-                enemy.transform.position = spawnPos;
-                enemy.SetActive(true);
-                enemyData.spawnTimer = enemyData.spawnDelay;
+                SpawnUnitEnemy(enemyData);
                 spawnedCounter++;
             }
         }
+    }
 
+    private void SpawnUnitEnemy(SpawnEnemyData enemyData)
+    {
+        Vector3 spawnPos = GetRandomSpawnPosition();
+        var enemy = poolManager.Get(enemyData.enemyType);
+        enemy.transform.SetParent(transform);
+        enemy.transform.position = spawnPos;
+        enemy.SetActive(true);
+        enemyData.spawnTimer = enemyData.spawnDelay;
+    }
+
+    private void SpawnBossEnemies(SpawnData currentPhase)
+    {
+        foreach (var enemyData in currentPhase.spawnEnemyDatas)
+        {
+            Vector3 spawnPos = GetRandomSpawnPosition();
+            var enemy = poolManager.Get(enemyData.enemyType);
+            enemy.transform.SetParent(transform);
+            enemy.transform.position = spawnPos;
+            enemy.SetActive(true);
+            enemyData.spawnTimer = enemyData.spawnDelay;
+        }
+    }
+
+    private Vector3 GetRandomSpawnPosition()
+    {
+        Vector3 spawnPos = spawnPositions[UnityEngine.Random.Range(0, spawnPositions.Length)].position;
+        var randomness = UnityEngine.Random.insideUnitCircle * UnityEngine.Random.Range(-positionRandomness, positionRandomness);
+        spawnPos += new Vector3(randomness.x, 0, randomness.y);
+        return spawnPos;
+    }
+
+    private void NextPhase()
+    {
+        currentPhaseIndex++;
+        waveText.SetText("WAVE " + (currentPhaseIndex + 1).ToString());
+        phaseTimer = 0;
+        isPhaseStarted = false;
     }
 }
-
-

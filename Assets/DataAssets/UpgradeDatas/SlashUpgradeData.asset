@@ -16,11 +16,11 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 728cafe97c950d847b4437124b2b5a46, type: 3}
   upgradeInfos:
   - upgradeName: Slash
-    description: Cut them all
+    description: Cut near enemies with blade
   - upgradeName: Slash
-    description: Cut them all
+    description: Upgrade blade size
   - upgradeName: Slash
-    description: Cut them all
+    description: Giant blade size!
   slashDatas:
   - slashDamage: 0
     slashDelay: 0

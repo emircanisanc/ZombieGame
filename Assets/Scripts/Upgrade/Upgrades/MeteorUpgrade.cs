@@ -18,11 +18,16 @@ namespace Upgrade
         private int meteorCount;
         private float spawnMeteorDelay;
         private float nextSpawnTime;
-        private bool isEnable = false;
 
         void Awake()
         {
             meteorPool = GetComponent<MonoPool>();
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+            enabled = false;
         }
 
         protected override void OnLevelUp()
@@ -32,15 +37,13 @@ namespace Upgrade
             meteorDamageToChange.Value = meteorUpgradeData.values[level].damage;
             if (level > 0)
             {
-                isEnable = true;
+                enabled = true;
                 nextSpawnTime = Time.timeSinceLevelLoad + spawnMeteorDelay;
             }
         }
 
         void FixedUpdate()
         {
-            if (!isEnable)
-                return;
             if (Time.timeSinceLevelLoad >= nextSpawnTime)
             {
                 nextSpawnTime = Time.timeSinceLevelLoad + spawnMeteorDelay;

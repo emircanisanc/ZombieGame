@@ -15,10 +15,10 @@ MonoBehaviour:
   maxLevel: 2
   icon: {fileID: 21300000, guid: 56e88f991dae9ef42927401da61ef806, type: 3}
   upgradeInfos:
-  - upgradeName: Bullet Per Shoot
-    description: Is That A Shotgun ?
-  - upgradeName: Bullet Per Shoot
-    description: Is That A Shotgun ?
-  - upgradeName: Bullet Per Shoot
+  - upgradeName: Bullet Amount
+    description: Fire one extra bullet!
+  - upgradeName: Bullet Amount
+    description: Fire three bullet!
+  - upgradeName: Bullet Amount
     description: Is That A Shotgun ?
   values: 010000000200000003000000

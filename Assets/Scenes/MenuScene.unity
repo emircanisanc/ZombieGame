@@ -1949,10 +1949,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "--ASSETSTORE.UNITY--\n\nCHARACTERS:\nDungeonMason\nKevin Iglesias\nSR
-    Studios Kerala\n\nAUDIOS:\nMuz Station Productions\nOlivier G\u0131rardot\nB.G.M
+  m_text: "CREATOR\nemircanisanc\n\n--ASSETSTORE.UNITY--\n\nCHARACTERS:\nDungeonMason\nKevin
+    Iglesias\nSR Studios Kerala\n\nAUDIOS:\nMuz Station Productions\nOlivier G\u0131rardot\nB.G.M
     \nCabled_mess\nCatastic\nCyberwave Orchestra\n\nENVIRONMENT:\nJustcreate\nPure
-    Poly\n\nSKY:\nAvionx\n\nPROPS:\nAurynsky\nLumo-Art 3d\n\nVFX:\nhovl studio\nretrovistas\nsynty
+    Poly\n\nPROPS:\nAurynsky\nLumo-Art 3d\n\nVFX:\nhovl studio\nretrovistas\nsynty
     studios\n\nUI:\nMimu studio\nFenerax studios\nPersefida\n\n--SKETCHFAB--\n\nArrow:\nJakob
     Henerey\n\nLittle Zombie:\nmeteyektay\n\nEye Zombie:\nLeVraiCoinCoin\n\n--Itch.io--\n\nUI:\nWenrexa"
   m_isRightToLeft: 0

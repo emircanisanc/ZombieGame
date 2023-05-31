@@ -241,6 +241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameTexT: {fileID: 5311300316896978132}
   descriptionText: {fileID: 8938396862006960318}
+  icon: {fileID: 0}
 --- !u!1 &5311300316896978154
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +338,7 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 0
   m_fontSizeMax: 0
   m_fontStyle: 17

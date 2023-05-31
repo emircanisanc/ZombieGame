@@ -17,7 +17,7 @@ public abstract class UpgradeBase : MonoBehaviour
 
     [SerializeField] private UpgradeUI upgradeUI;
 
-    void Start()
+    protected virtual void Start()
     {
         upgradeUI.OnUpgradeSelected += LevelUp;
         OnLevelUp();

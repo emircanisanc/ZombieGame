@@ -16,22 +16,25 @@ namespace Upgrade
         private float healAmount;
         private float healDelay;
         private float nextHealthTime;
-        private bool isEnable = false;
         protected override void OnLevelUp()
         {
             healAmount = healUpgradeData.healDatas[level].healAmount;
             healDelay = healUpgradeData.healDatas[level].healDelay;
             if (level > 0)
             {
-                isEnable = true;
+                enabled = true;
                 nextHealthTime = Time.timeSinceLevelLoad + healDelay;
             }
         }
 
+        protected override void Start()
+        {
+            base.Start();
+            enabled = false;
+        }
+
         void FixedUpdate()
         {
-            if (!isEnable)
-                return;
             if (Time.timeSinceLevelLoad >= nextHealthTime)
             {
                 nextHealthTime = Time.timeSinceLevelLoad + healDelay;

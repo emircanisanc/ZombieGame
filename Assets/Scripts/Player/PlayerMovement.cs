@@ -57,10 +57,10 @@ public class PlayerMovement : MonoBehaviour
             Speed = 0f;
             return;
         }
-        # region PLAYER INPUT
+        
         horizontal = joystick.Horizontal;
         vertical = joystick.Vertical;
-        # endregion
+        
         Vector3 direction = new Vector3(horizontal, 0f, vertical);
         Speed = direction.magnitude;
         if(Speed >= 0.1f)
@@ -80,13 +80,21 @@ public class PlayerMovement : MonoBehaviour
             if(lastTarget == null)
             {
                 rayCounter++;
-                if(rayCounter % 10 == 0)
+                if(rayCounter % 20 != 0)
                 {
-                    rayCounter = 1;
-                } else {
                     return;
                 }
+                rayCounter = 1;
+            } else {
+                rayCounter++;
+                if(rayCounter % 2 != 0)
+                {
+                    return;
+                }
+                rayCounter = 0;
             }
+
+            
 
             Vector3 pos = transform.position;
             Vector3 forw = transform.forward;
@@ -97,9 +105,9 @@ public class PlayerMovement : MonoBehaviour
                 return;
             }
                 
-            if(Physics.SphereCastNonAlloc(pos + forw * 0.5f, 2.5f, forw, hits, 0f, enemyLayer) > 0) {
+            if(Physics.SphereCastNonAlloc(pos + forw * 0.5f, 3.5f, forw, hits, 0f, enemyLayer) > 0) {
                 if (Contains(hits) && lastTarget.gameObject.activeSelf) {
-                    if (Vector3.Distance(pos, lastTarget.position) > 2f) {
+                    if (Vector3.Distance(pos, lastTarget.position) > 3f) {
                         lastTarget = hits[0].transform;
                     } 
                 } else {

@@ -102,7 +102,7 @@ public class WeaponBase : MonoBehaviour, IFireable, IReloadable
     
     protected void OnFired()
     {
-        ReduceAmmo();
+        //ReduceAmmo();
         audioEvent.Play(audioSource);
         OnFire?.Invoke();
         lastFireTime = Time.timeSinceLevelLoad;

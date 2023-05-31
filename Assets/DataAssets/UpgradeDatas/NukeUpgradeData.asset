@@ -16,9 +16,9 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 3a531b4223969714d84ba33590189784, type: 3}
   upgradeInfos:
   - upgradeName: Nuke
-    description: Send Nukes
+    description: Send nuke to near enemies
   - upgradeName: Nuke
-    description: Send Nukes
+    description: Send more nukes!
   - upgradeName: Nuke
     description: Send Nukes
   values:

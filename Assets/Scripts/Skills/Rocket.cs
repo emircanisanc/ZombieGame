@@ -46,6 +46,8 @@ public class Rocket : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (!isActive)
+            return;
         if (other.CompareTag("Enemy") || other.CompareTag("Ground"))
         {
             isActive = false;
