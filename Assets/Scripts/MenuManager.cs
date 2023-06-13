@@ -53,7 +53,7 @@ public class MenuManager : MonoBehaviour
                 
                 tmpLoadText.text = textAfterScreenLoaded;
                 
-                if (Input.touchCount > 0)
+                if (Input.touchCount > 0 && Input.GetMouseButton(0))
                     asyncOperation.allowSceneActivation = true;
             }
 
